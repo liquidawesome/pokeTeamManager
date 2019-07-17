@@ -19,3 +19,18 @@ export const toggleSearch = (id) => {
 };
 
 export const getInput = () => document.querySelector('.search_input').value;
+
+export const clearInput = () => document.querySelector('.search_input').value = '';
+
+export const setImage = (id, team) => {
+	const item = document.querySelector(`#t${id}.team-item`);
+	let img;
+	team.forEach(el => {
+		if (el.id == id) {
+			img = el.data.sprites.front_default;
+		}
+	});
+	item.innerHTML = '&nbsp;';
+	item.style.backgroundImage = `url('${img}')`;
+
+};

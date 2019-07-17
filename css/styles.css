@@ -80,7 +80,9 @@ body {
 }
 
 /* Search Pokemon */
-
+.search_error {
+	color: red;
+}
 
 /* Misc */
 h1, h2 {
