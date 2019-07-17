@@ -1,13 +1,17 @@
 import Find from './models/Find';
 import * as findView from './views/findView';
 
-const state = {};
-
 /* POKEMON CONTROLLER */
 
 
 /* FIND CONTROLLER */
+const findControl = async () => {
+	const query = findView.getInput();
 
+	if (query) {
+		const search = new Find(query);
+	}
+};
 
 /* DETAIL CONTROLLER */
 
@@ -23,5 +27,5 @@ document.querySelector('.team').addEventListener('click', e => {
 
 document.querySelector('.search_form').addEventListener('submit', e => {
 	e.preventDefault();
-	console.log(document.querySelector('.search_input').value);
+	findControl();
 });

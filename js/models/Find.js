@@ -3,5 +3,7 @@ export default class Find {
 		this.query = query;
 	}
 
-
+	async getPokemon() {
+		console.log(true);
+	}
 }

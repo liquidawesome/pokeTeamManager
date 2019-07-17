@@ -16,4 +16,6 @@ export const toggleSearch = (id) => {
 				el.style.zIndex = 25;
 		});
 	}
-}
+};
+
+export const getInput = () => document.querySelector('.search_input').value;
