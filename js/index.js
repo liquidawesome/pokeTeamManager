@@ -5,13 +5,13 @@ import * as findView from './views/findView';
 
 
 /* FIND CONTROLLER */
-const findControl = async () => {
-	const query = findView.getInput();
+// const findControl = async () => {
+// 	const query = findView.getInput();
 
-	if (query) {
-		const search = new Find(query);
-	}
-};
+// 	if (query) {
+// 		const search = new Find(query);
+// 	}
+// };
 
 /* DETAIL CONTROLLER */
 
