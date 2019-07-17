@@ -1,0 +1,24 @@
+{
+  "name": "poketeammanager",
+  "version": "1.0.0",
+  "description": "Team Manager",
+  "main": "index.js",
+  "scripts": {
+    "cleanup": "rm -rf dist",
+    "build": "./node_modules/.bin/parcel build index.html",
+    "start": "./node_modules/.bin/parcel index.html --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liquidawesome/pokeTeamManager.git"
+  },
+  "author": "Sean McCartan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liquidawesome/pokeTeamManager/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
+  }
+}
