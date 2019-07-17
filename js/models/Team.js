@@ -1,16 +1,17 @@
 import axios from 'axios';
 
-export default class Find {
+export default class Team {
 	constructor(query, id) {
 		this.query = query;
 		this.id = id;
+		this.pokemon = [];
 	}
 
 	async getPokemon() {
 		try {
 			const result = await axios(`https://pokeapi.co/api/v2/pokemon/${this.query.toLowerCase()}`);
-			this.pokemon = result.data;
 			document.querySelector('.search_error').style.display = 'none';
+			return { id: this.id, data: result.data };
 		} catch (err) {
 			document.querySelector('.search_error').style.display = 'block';
 			console.error(err);

@@ -1,5 +1,5 @@
-import Find from './models/Find';
-import * as findView from './views/findView';
+import Team from './models/Team';
+import * as teamView from './views/teamView';
 
 /**
  * Global State
@@ -11,24 +11,22 @@ const state = {
 	current: 0
 };
 
-/* POKEMON CONTROLLER */
-
-
-/* FIND CONTROLLER */
-const findControl = async () => {
-	const query = findView.getInput();
+/* TEAM CONTROLLER */
+const teamControl = async () => {
+	const query = teamView.getInput();
 
 	if (query) {
-		state.find = new Find(query, state.current);
-		await state.find.getPokemon();
+		const teamObject = new Team(query, state.current);
+		const item = await teamObject.getPokemon();
 
 		// Find if there is a team element that already has the current ID
-		const teamIndex = state.team.findIndex(el => el.id == state.current);
+		const teamIndex = teamObject.pokemon.findIndex(el => el.id == state.current);
 		if (teamIndex >= 0) {
-			state.team.splice(teamIndex);
+			teamObject.pokemon.splice(teamIndex);
 		}
-		state.team.push({ id: state.current, data: state.find.pokemon });
-		findView.setImage(state.current, state.team);
+
+		state.team.push(item);
+		teamView.setImage(state.current, state.team);
 	}
 };
 
@@ -38,15 +36,15 @@ const findControl = async () => {
 /* EVENT HANDLERS */
 document.querySelector('.team').addEventListener('click', e => {
 	if (e.target.matches('.team-item')) {
-		findView.toggleSearch(e.target.id);
+		teamView.toggleSearch(e.target.id);
 	}
 	state.current = e.target.id.substring(1);
 });
 
 document.querySelector('.search_form').addEventListener('submit', e => {
 	e.preventDefault();
-	findControl();
-	findView.clearInput();
+	teamControl();
+	teamView.clearInput();
 });
 
 window.state = state;
