@@ -20,12 +20,20 @@ export const toggleSearch = (id) => {
 	}
 };
 
-export const toggleOptions = (team) => {
+const withinTeam = (id, team) => {
+	const find = team.findIndex(el => el.id == id);
+	return (find >= 0) ? true : false;
+};
+
+export const toggleOptions = (id, team) => {
 	const remove = document.querySelector('.search .search_remove');
 	const rename = document.querySelector('.search .rename_form');
-	if (team.length > 0) {
+	if (withinTeam(id, team) && (remove.style.display === 'none' && remove.style.display === 'none')) {
 		remove.style.display = 'block';
 		rename.style.display = 'block';
+	} else {
+		remove.style.display = 'none';
+		rename.style.display = 'none';
 	}
 };
 

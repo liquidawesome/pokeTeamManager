@@ -39,7 +39,7 @@ document.querySelector('.team').addEventListener('click', e => {
 	state.current = e.target.id.substring(1);
 	if (e.target.matches('.team-item')) {
 		teamView.toggleSearch(e.target.id);
-		teamView.toggleOptions(state.team);
+		teamView.toggleOptions(state.current, state.team);
 	}
 	// detailControl ?
 });
@@ -48,6 +48,9 @@ document.querySelector('.search_form').addEventListener('submit', e => {
 	e.preventDefault();
 	teamControl();
 	teamView.clearInput();
+	if (state.current > 0) {
+		teamView.toggleSearch(state.current);
+	}
 });
 
 window.state = state;
