@@ -85,6 +85,11 @@ body {
 	color: red;
 }
 
+/* Details */
+.details-data_name:first-letter {
+	text-transform: uppercase;
+}
+
 /* Misc */
 h1, h2 {
 	color: #000;

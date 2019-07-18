@@ -1,15 +1,15 @@
 export const renderDetails = (data) => {
 	const markup = `
 	<div class="details-data">
-		<p class="details-data_name">Name: ${data.name}</p>
+		<p class="details-data_name">Name: ${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</p>
 		<p class="details-data_type">Types: ${getTypes(data.types)}</p>
 	</div>
 	`;
-	document.querySelector('.details').insertAdjacentHTML('beforeend', markup);
+	document.querySelector('.details-container').insertAdjacentHTML('beforeend', markup);
 };
 
 export const clearDetails = () => {
-	document.querySelector('.details').innerHTML = '';
+	document.querySelector('.details-container').innerHTML = '';
 };
 
 const getTypes = (typeArray) => {

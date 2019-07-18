@@ -38,7 +38,6 @@ const detailControl = async () => {
 	const pokeID = state.team.find(el => el.id === state.current).data.id;
 	state.details = new Details(pokeID);
 	await state.details.getDetails();
-	detailsView.clearDetails();
 	detailsView.renderDetails(state.details.data);
 };
 
@@ -50,6 +49,7 @@ document.querySelector('.team').addEventListener('click', e => {
 		// Seems kinda messy. Wrap more of this is spotUsed() ?
 		teamView.toggleOptions(state.current, state.team);
 		if (teamView.spotUsed(state.current, state.team)) {
+			detailsView.clearDetails();
 			detailControl();
 		}
 	}
