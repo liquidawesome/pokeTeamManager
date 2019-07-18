@@ -1,4 +1,5 @@
 import Team from './models/Team';
+import Details from './models/Details';
 import * as teamView from './views/teamView';
 
 /**
@@ -32,16 +33,21 @@ const teamControl = async () => {
 };
 
 /* DETAIL CONTROLLER */
-
+const detailControl = async () => {
+	state.details = new Details(state.current);
+};
 
 /* EVENT HANDLERS */
 document.querySelector('.team').addEventListener('click', e => {
 	state.current = e.target.id.substring(1);
 	if (e.target.matches('.team-item')) {
 		teamView.toggleSearch(e.target.id);
+		// Seems kinda messy. Wrap more of this is spotUsed() ?
 		teamView.toggleOptions(state.current, state.team);
+		if (teamView.spotUsed(state.current, state.team)) {
+			detailControl(state.current);
+		}
 	}
-	// detailControl ?
 });
 
 document.querySelector('.search_form').addEventListener('submit', e => {

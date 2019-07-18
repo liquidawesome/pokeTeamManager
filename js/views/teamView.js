@@ -20,7 +20,7 @@ export const toggleSearch = (id) => {
 	}
 };
 
-const withinTeam = (id, team) => {
+export const spotUsed = (id, team) => {
 	const find = team.findIndex(el => el.id == id);
 	return (find >= 0) ? true : false;
 };
@@ -28,7 +28,7 @@ const withinTeam = (id, team) => {
 export const toggleOptions = (id, team) => {
 	const remove = document.querySelector('.search .search_remove');
 	const rename = document.querySelector('.search .rename_form');
-	if (withinTeam(id, team) && (remove.style.display === 'none' && remove.style.display === 'none')) {
+	if (spotUsed(id, team) && (remove.style.display === 'none' && remove.style.display === 'none')) {
 		remove.style.display = 'block';
 		rename.style.display = 'block';
 	} else {
