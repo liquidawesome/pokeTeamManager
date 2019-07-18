@@ -14,4 +14,14 @@ export default class Details {
 			return false;
 		}
 	}
+
+	async getSpecies() {
+		try {
+			const result = await axios(`https://pokeapi.co/api/v2/pokemon-species/${this.id}`);
+			this.species = result.data;
+		} catch (err) {
+			console.error(`Error getting species: ${err}`);
+			return false;
+		}
+	}
 }

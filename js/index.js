@@ -22,9 +22,9 @@ const teamControl = async () => {
 		const item = await teamObject.getPokemon();
 
 		// Find if there is a team element that already has the current ID
-		const teamIndex = teamObject.pokemon.findIndex(el => el.id == state.current);
+		const teamIndex = state.team.findIndex(el => el.id == state.current);
 		if (teamIndex >= 0) {
-			teamObject.pokemon.splice(teamIndex);
+			state.team.splice(teamIndex);
 		}
 		if (item) {
 			state.team.push(item);

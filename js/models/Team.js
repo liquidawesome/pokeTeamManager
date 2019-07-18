@@ -4,7 +4,6 @@ export default class Team {
 	constructor(query, id) {
 		this.query = query;
 		this.id = id;
-		this.pokemon = [];
 	}
 
 	async getPokemon() {
