@@ -1,6 +1,7 @@
 import Team from './models/Team';
 import Details from './models/Details';
 import * as teamView from './views/teamView';
+import * as detailsView from './views/detailsView';
 
 /**
  * Global State
@@ -34,7 +35,11 @@ const teamControl = async () => {
 
 /* DETAIL CONTROLLER */
 const detailControl = async () => {
-	state.details = new Details(state.current);
+	const pokeID = state.team.find(el => el.id === state.current).data.id;
+	state.details = new Details(pokeID);
+	await state.details.getDetails();
+	detailsView.clearDetails();
+	detailsView.renderDetails(state.details.data);
 };
 
 /* EVENT HANDLERS */
@@ -45,7 +50,7 @@ document.querySelector('.team').addEventListener('click', e => {
 		// Seems kinda messy. Wrap more of this is spotUsed() ?
 		teamView.toggleOptions(state.current, state.team);
 		if (teamView.spotUsed(state.current, state.team)) {
-			detailControl(state.current);
+			detailControl();
 		}
 	}
 });
