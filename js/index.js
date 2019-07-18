@@ -36,10 +36,12 @@ const teamControl = async () => {
 
 /* EVENT HANDLERS */
 document.querySelector('.team').addEventListener('click', e => {
+	state.current = e.target.id.substring(1);
 	if (e.target.matches('.team-item')) {
 		teamView.toggleSearch(e.target.id);
+		teamView.toggleOptions(state.team);
 	}
-	state.current = e.target.id.substring(1);
+	// detailControl ?
 });
 
 document.querySelector('.search_form').addEventListener('submit', e => {
