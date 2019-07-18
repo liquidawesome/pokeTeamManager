@@ -63,6 +63,7 @@ body {
 	height: 85px;
 	border-radius: 50%;
 	background: #828282;
+	background-position: center;
 	cursor: pointer;
 	user-select: none;
 	-webkit-user-select: none;

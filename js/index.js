@@ -24,9 +24,10 @@ const teamControl = async () => {
 		if (teamIndex >= 0) {
 			teamObject.pokemon.splice(teamIndex);
 		}
-
-		state.team.push(item);
-		teamView.setImage(state.current, state.team);
+		if (item) {
+			state.team.push(item);
+			teamView.setImage(state.current, state.team);
+		}
 	}
 };
 

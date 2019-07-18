@@ -14,7 +14,8 @@ export default class Team {
 			return { id: this.id, data: result.data };
 		} catch (err) {
 			document.querySelector('.search_error').style.display = 'block';
-			console.error(err);
+			console.error(`Error getting pokemon: ${err}`);
+			return false;
 		}
 	}
 }
