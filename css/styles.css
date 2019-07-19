@@ -88,16 +88,17 @@ body {
 }
 
 .details-data {
-	padding-top: 10px;
+	padding-top: 15px;
 }
 
 .details .details_img {
-	border-radius: 50%;
+	border-radius: 10px;
 	width: 100px;
 	height: 100px;
 	position: absolute;
 	right: 20px;
 	top: 20px;
+	padding: 5px;
 }
 
 .details-data_name:first-letter {
