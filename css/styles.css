@@ -38,11 +38,6 @@ body {
 	padding: 0 20px;
 }
 
-.details {
-	grid-area: details;
-	padding: 0 20px;
-}
-
 .stats {
 	grid-area: stats;
 	padding: 0 20px;
@@ -86,8 +81,23 @@ body {
 }
 
 /* Details */
-.details > h2 {
-	width: 50%;
+.details {
+	grid-area: details;
+	padding: 0 20px;
+	position: relative;
+}
+
+.details-data {
+	padding-top: 10px;
+}
+
+.details .details_img {
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	right: 20px;
+	top: 20px;
 }
 
 .details-data_name:first-letter {
