@@ -46,11 +46,20 @@ document.querySelector('.team').addEventListener('click', e => {
 	state.current = e.target.id.substring(1);
 	if (e.target.matches('.team-item')) {
 		teamView.toggleSearch(e.target.id);
-		// Seems kinda messy. Wrap more of this is spotUsed() ?
 		teamView.toggleOptions(state.current, state.team);
-		if (teamView.spotUsed(state.current, state.team)) {
+		const team = document.querySelector('.team');
+
+		// If selection is closed, open it
+		if (team.classList.contains('closed')) {
+			team.classList.replace('closed', 'open');
+			if (teamView.spotUsed(state.current, state.team)) {
+				detailControl();
+			}
+		}
+		// If selection is open, close it
+		else if (team.classList.contains('open')) {
+			team.classList.replace('open', 'closed');
 			detailsView.clearDetails();
-			detailControl();
 		}
 	}
 });
@@ -62,6 +71,8 @@ document.querySelector('.search_form').addEventListener('submit', e => {
 	if (state.current > 0) {
 		teamView.toggleSearch(state.current);
 	}
+	document.querySelector('.team').classList.replace('open', 'closed');
+	teamView.toggleOptions(state.current, state.team);
 });
 
 window.state = state;
