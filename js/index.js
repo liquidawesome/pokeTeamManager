@@ -68,6 +68,7 @@ document.querySelector('.search_form').addEventListener('submit', e => {
 	e.preventDefault();
 	teamControl();
 	teamView.clearInput();
+	detailsView.clearDetails();
 	if (state.current > 0) {
 		teamView.toggleSearch(state.current);
 	}

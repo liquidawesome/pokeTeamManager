@@ -86,6 +86,10 @@ body {
 }
 
 /* Details */
+.details > h2 {
+	width: 50%;
+}
+
 .details-data_name:first-letter {
 	text-transform: uppercase;
 }
