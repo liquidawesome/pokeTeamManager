@@ -24,7 +24,7 @@ const teamControl = async () => {
 		// Find if there is a team element that already has the current ID
 		const teamIndex = state.team.findIndex(el => el.id == state.current);
 		if (teamIndex >= 0) {
-			state.team.splice(teamIndex);
+			state.team.splice(teamIndex, 1);
 		}
 		if (item) {
 			state.team.push(item);

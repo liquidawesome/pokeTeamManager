@@ -27,7 +27,7 @@ const getTypes = (typeArray) => {
 const getColor = (color) => {
 	const goodColors = {
 		'black': '#00000082',
-		'blue': '#6483f9',
+		'blue': '#4969e1',
 		'brown': '#885612',
 		'gray': '#6d6d6d',
 		'green': '#408f40',
