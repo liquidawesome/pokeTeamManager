@@ -33,44 +33,49 @@ const getTypes = (typeArray) => {
 const getEvolutions = (evo, outputArray, iter = 1) => {
 	let reason;
 	if (evo.evolution_details.length > 0) {
-		evo.evolution_details.forEach(el => {
-			// Evolution Reasons
-			if (el.trigger.name === 'level-up' && el.min_level && el.relative_physical_stats) {
-				switch (el.relative_physical_stats) {
-					case 1:
-						reason = `Evolves at level ${el.min_level} when Attack > Defense`;
-						break;
-					case 0:
-						reason = `Evolves at level ${el.min_level} when Attack = Defense`;
-						break;
-					case -1:
-						reason = `Evolves at level ${el.min_level} when Attack < Defense`;
-						break;
-					default:
-						reason = `Evolves at level ${el.min_level} with special stats.`;
-				}
-			} else if (el.trigger.name === 'level-up' && el.min_level && el.gender) {
-				switch (el.gender) {
-					case 1:
-						reason = `Evolves at level ${el.min_level} if female`;
-						break;
-					case 2:
-						reason = `Evolves at level ${el.min_level} if male`;
-						break;
-					default:
-						reason = `Evolves at level ${el.min_level}`;
-				}
-			} else if (el.trigger.name === 'level-up' && el.min_level) {
-				reason = `Evolves at level ${el.min_level}`;
-			} else if (el.trigger.name === 'level-up' && el.location) {
-				reason = `Evolves after levelling up at ${el.location.name}`;
-			} else if (el.trigger.name === 'use-item' && el.item) {
-				reason = `Evolves after using a ${el.item.name}`;
-			} else {
-				reason = `Evolves using some method I have not bothered to factor into my code`;
+		const el = evo.evolution_details[0]
+		// Evolution Reasons
+		if (el.trigger.name === 'level-up' && el.min_level && el.relative_physical_stats) {
+			switch (el.relative_physical_stats) {
+				case 1:
+					reason = `Evolves at level ${el.min_level} when Attack > Defense`;
+					break;
+				case 0:
+					reason = `Evolves at level ${el.min_level} when Attack = Defense`;
+					break;
+				case -1:
+					reason = `Evolves at level ${el.min_level} when Attack < Defense`;
+					break;
+				default:
+					reason = `Evolves at level ${el.min_level} with special stats.`;
 			}
-			console.log(reason);
-		});
+		} else if (el.trigger.name === 'level-up' && el.min_level && el.gender) {
+			switch (el.gender) {
+				case 1:
+					reason = `Evolves at level ${el.min_level} if female`;
+					break;
+				case 2:
+					reason = `Evolves at level ${el.min_level} if male`;
+					break;
+				default:
+					reason = `Evolves at level ${el.min_level}`;
+			}
+		} else if (el.trigger.name === 'level-up' && el.min_happiness) {
+			reason = `Evolves after levelling up with high happiness`;
+			if (el.time_of_day) {
+				reason += ` at ${el.time_of_day}`;
+			}
+		} else if (el.trigger.name === 'level-up' && el.min_affection) {
+			reason = `Evolves after levelling up with ${el.min_affection} levels of affection`;
+		} else if (el.trigger.name === 'level-up' && el.min_level) {
+			reason = `Evolves at level ${el.min_level}`;
+		} else if (el.trigger.name === 'level-up' && el.location) {
+			reason = `Evolves after levelling up at ${el.location.name}`;
+		} else if (el.trigger.name === 'use-item' && el.item) {
+			reason = `Evolves after using a ${el.item.name}`;
+		} else {
+			reason = `Evolves using some method I have not bothered to factor into my code`;
+		}
 	}
 	outputArray.push({ name: evo.species.name, stage: iter, reason: reason });
 	if (evo.evolves_to.length > 0) {
@@ -92,7 +97,7 @@ const renderEvolutions = (evoChain) => {
 			stage = el.stage;
 			markup += `</div><div data-stage="${stage}">`;
 		}
-		markup += `<div>${el.name}<br>`;
+		markup += `<div>${el.name}`;
 		if (el.reason) {
 			markup += `<p>${el.reason}</p>`;
 		}

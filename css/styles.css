@@ -105,6 +105,22 @@ body {
 	text-transform: uppercase;
 }
 
+.details-data_evolution > p {
+	margin-bottom: 0;
+	border-bottom: 2px solid #515151;
+}
+
+.details-data_evolution > div {
+	border-bottom: 1px solid #515151;
+	padding: 4px 0;
+}
+
+.details-data_evolution > div p {
+	margin-bottom: 0;
+	font-size: 11px;
+	margin-top: 5px;
+}
+
 /* Misc */
 h1, h2 {
 	color: #000;
