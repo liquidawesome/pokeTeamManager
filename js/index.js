@@ -38,7 +38,8 @@ const detailControl = async () => {
 	const pokeID = state.team.find(el => el.id === state.current).data.id;
 	state.details = new Details(pokeID);
 	await state.details.getDetails();
-	await state.details.getSpecies();
+	await state.details.getSpecies(state.details.data.species.url);
+	await state.details.getEvolutionChain(state.details.species.evolution_chain.url);
 	detailsView.renderDetails(state.details);
 };
 
