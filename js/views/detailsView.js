@@ -1,7 +1,6 @@
 export const renderDetails = (details) => {
 	let evoChain = [];
 	getEvolutions(details.evolution.chain, evoChain);
-	console.log(evoChain);
 	const markup = `
 	<h2>Details</h2>
 	<img class="details_img" src="${details.data.sprites.front_default}" style="background-color:${getColor(details.species.color.name)}"/>
@@ -10,7 +9,7 @@ export const renderDetails = (details) => {
 		<p class="details-data_type">Types: ${getTypes(details.data.types)}</p>
 		<div class="details-data_evolution">
 			<p>Evolution Chain:</p>
-			${evoChain}
+			${renderEvolutions(evoChain)}
 		</div>
 	</div>
 	`;
@@ -39,6 +38,23 @@ const getEvolutions = (evo, outputArray, iter = 1) => {
 			getEvolutions(el, outputArray, iter);
 		});
 	}
+};
+
+const renderEvolutions = (evoChain) => {
+	let stage = 1;
+	let markup = `<div data-stage="${stage}">`;
+	if (evoChain.length === 1) {
+		return 'This pokemon is not known to evolve.';
+	}
+	evoChain.forEach(el => {
+		if (el.stage > stage) {
+			stage = el.stage;
+			markup += `</div><div data-stage="${stage}">`;
+		}
+		markup += `${el.name}<br>`;
+	});
+	markup += '</div>';
+	return markup;
 };
 
 const getColor = (color) => {
