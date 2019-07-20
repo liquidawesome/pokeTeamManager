@@ -15,6 +15,7 @@ export default class Details {
 		}
 	}
 
+	// TODO: Refactor these function into a single one w/ a parameter for what data you're getting?
 	async getSpecies(url) {
 		try {
 			const result = await axios(url);
